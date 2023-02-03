@@ -22,6 +22,15 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
+    public void Btn_Jump(){
+        if(isGrounded == true){
+            animator.SetBool("Move", false);
+            rigidbody2D.velocity = Vector2.zero;
+            rigidbody2D.AddForce(new Vector2(0,JumpForce));
+            animator.SetBool("Grounded", isGrounded);
+            animator.SetBool("Move", false);            
+        }
+    }
 
     void Move(){    
         if(isDead == false){
@@ -39,14 +48,9 @@ public class PlayerController : MonoBehaviour
                     animator.SetBool("Move", true);
                     //앞으로 이동
                     }            
-                if(touch.phase == TouchPhase.Ended){
-                    if(isGrounded == true){
-                        animator.SetBool("Move", false);
-                        rigidbody2D.velocity = Vector2.zero;
-                        rigidbody2D.AddForce(new Vector2(0,JumpForce));
-                        animator.SetBool("Grounded", isGrounded);
-                        animator.SetBool("Move", false);
-                    }
+                if(touch.phase == TouchPhase.Ended){   
+                    animator.SetBool("Move", false);            
+
                     //점프
                 }            
             }

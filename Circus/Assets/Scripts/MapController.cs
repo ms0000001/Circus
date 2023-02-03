@@ -6,6 +6,9 @@ public class MapController : MonoBehaviour
 {
     public Transform background;    
     float speed = 3.5f;
+    public static bool Rbuttondown = false;
+    public static bool Lbuttondown = false;
+
     void Start()
     {
     }
@@ -13,7 +16,9 @@ public class MapController : MonoBehaviour
     void Update()
     {
         if(PlayerController.isDead == false){
-        MapMove();
+        // MapMove();
+        Btn_Rmove();
+        Btn_Lmove();
         }        
     }
     
@@ -35,5 +40,17 @@ public class MapController : MonoBehaviour
         //     background.transform.position += 
         //     Vector3.left*speed*Time.deltaTime;
         // }
+    }
+    public void Btn_Rmove(){
+        if(Rbuttondown == true){
+            background.transform.position += 
+            Vector3.left*speed*Time.deltaTime;
+        }
+    }
+    public void Btn_Lmove(){
+        if(Lbuttondown == true){
+            background.transform.position -= 
+            Vector3.left*speed*Time.deltaTime;
+        }
     }
 }
